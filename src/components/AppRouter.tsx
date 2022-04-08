@@ -6,9 +6,11 @@ import Login from "../pages/Login";
 import Event from "../pages/Event";
 // Routes
 import { privateRoutes, publicRoutes } from "../routes";
+// Hooks
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
 const AppRouter: FC = () => {
-  const auth = true;
+  const { auth } = useTypedSelector((state) => state.auth);
 
   return auth ? (
     <Routes>

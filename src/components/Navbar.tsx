@@ -1,13 +1,16 @@
 // Libraries
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
+// Hooks
+import { useTypedSelector } from "../hooks/useTypedSelector";
 // Ant
 import { Layout, Menu, Row } from "antd";
+
 const { Header } = Layout;
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
-  const auth = true;
+  const { auth } = useTypedSelector((state) => state.auth);
 
   return (
     <Header>
