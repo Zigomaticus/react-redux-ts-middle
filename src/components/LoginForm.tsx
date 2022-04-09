@@ -6,8 +6,12 @@ import React, { FC } from "react";
 import { rules } from "../utils/rules";
 
 const LoginForm: FC = () => {
+  const submit = () => {
+    console.log(123);
+  };
+
   return (
-    <Form>
+    <Form onFinish={submit}>
       <Form.Item
         label="Имя пользователя"
         name="username"
