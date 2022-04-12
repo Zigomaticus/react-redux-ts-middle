@@ -3,20 +3,23 @@ import { Button, Form } from "antd";
 import Input from "rc-input";
 import React, { FC } from "react";
 import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 // Store
 import { AuthActionCreators } from "../store/reducers/auth/action-creators";
 // utils
 import { rules } from "../utils/rules";
 
 const LoginForm: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { error, isLoading } = useTypedSelector((state) => state.auth);
 
   const submit = () => {
-    dispatch(AuthActionCreators.login('user', '123'))
+    dispatch(AuthActionCreators.login("user", "123"));
   };
 
   return (
     <Form onFinish={submit}>
+      {error && <div style={{ color: "red" }}>{error}</div>}
       <Form.Item
         label="Имя пользователя"
         name="username"
@@ -32,7 +35,7 @@ const LoginForm: FC = () => {
         <Input />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={isLoading}>
           Войти
         </Button>
       </Form.Item>
