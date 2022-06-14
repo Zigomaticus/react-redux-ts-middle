@@ -1,13 +1,10 @@
-// Libraries
 import React from "react";
 // Pages
 import Login from "../pages/Login";
 import Event from "../pages/Event";
-
 export interface IRoute {
   path: string;
   component: React.ComponentType;
-  exact?: boolean;
 }
 
 export enum RouteNames {
@@ -24,7 +21,7 @@ export const publicRoutes: IRoute[] = [
 
 export const privateRoutes: IRoute[] = [
   {
-    path: RouteNames.EVENT,
+    path: RouteNames.LOGIN,
     component: Event,
   },
 ];

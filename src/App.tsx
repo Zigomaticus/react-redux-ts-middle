@@ -1,21 +1,19 @@
-// Css
-import "./App.css";
-// Libraies
 import React, { FC } from "react";
-// Components
-import AppRouter from "./components/AppRouter";
+// Componetns
 import Navbar from "./components/Navbar";
+import AppRouter from "./components/AppRouter";
 // Ant
 import { Layout } from "antd";
-const { Content } = Layout;
+// Css
+import "./App.css";
 
 const App: FC = () => {
   return (
     <Layout>
       <Navbar />
-      <Content>
+      <Layout.Content>
         <AppRouter />
-      </Content>
+      </Layout.Content>
     </Layout>
   );
 };

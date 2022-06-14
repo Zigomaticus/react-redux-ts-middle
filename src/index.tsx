@@ -1,20 +1,17 @@
-// Libraries
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-// Redux
-import { store } from "./store/index";
+// Store
+import { store } from "./store";
 // App
 import App from "./App";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </Provider>
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
