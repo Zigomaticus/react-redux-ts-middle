@@ -25,7 +25,7 @@ const Navbar: FC = () => {
         ) : (
           <Menu theme="dark" mode="horizontal" selectable={false}>
             <Menu.Item onClick={() => navigate("/login")} key={2}>
-              Логин
+              Login
             </Menu.Item>
           </Menu>
         )}
