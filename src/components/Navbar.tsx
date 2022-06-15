@@ -1,16 +1,19 @@
-import { Menu, Row } from "antd";
-import { Header } from "antd/lib/layout/layout";
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
+// Hooks
+import { useTypedSelector } from "../hooks/useTypedSelector";
+// Ant
+import { Menu, Row } from "antd";
+import { Header } from "antd/lib/layout/layout";
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
-  const auth = true;
+  const isAuth = useTypedSelector((state) => state.auth.isAuth);
 
   return (
     <Header>
       <Row justify="end">
-        {auth ? (
+        {isAuth ? (
           <>
             <div style={{ color: "white" }}>Denis</div>
             <Menu theme="dark" mode="horizontal" selectable={false}>
@@ -21,7 +24,7 @@ const Navbar: FC = () => {
           </>
         ) : (
           <Menu theme="dark" mode="horizontal" selectable={false}>
-            <Menu.Item onClick={() => navigate("/login")} key={1}>
+            <Menu.Item onClick={() => navigate("/login")} key={2}>
               Логин
             </Menu.Item>
           </Menu>
