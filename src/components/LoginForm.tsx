@@ -1,12 +1,16 @@
 import React, { FC } from "react";
+import { useDispatch } from "react-redux";
 // Utils
 import { rules } from "../utils/rules";
+// Auth
+import { AuthActionCreators } from "../store/reducers/auth/action-creaters";
 // Antd
 import { Button, Form, Input } from "antd";
 
 const LoginForm: FC = () => {
+  const dispatch = useDispatch();
   const submit = () => {
-    console.log("submit");
+    dispatch(AuthActionCreators.login("user", "123"));
   };
 
   return (
