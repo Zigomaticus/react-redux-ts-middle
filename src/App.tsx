@@ -4,11 +4,12 @@ import Navbar from "./components/Navbar";
 import AppRouter from "./components/AppRouter";
 // Hooks
 import { useActions } from "./hooks/useActions";
+// Models
+import { IUser } from "./models/IUser";
 // Ant
 import { Layout } from "antd";
 // Css
 import "./App.css";
-import { IUser } from "./models/IUser";
 
 const App: FC = () => {
   const { setUser, setIsAuth } = useActions();
