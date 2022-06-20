@@ -1,10 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 // Antd
 import { Button, DatePicker, Form, Input, Row, Select } from "antd";
 // utils
 import { rules } from "../utils/rules";
+// Models
+import { IUser } from "../models/IUser";
 
-const EventForm: FC = () => {
+interface EventFormProps {
+  guests: IUser[];
+}
+
+const EventForm: FC<EventFormProps> = (
+  props: PropsWithChildren<EventFormProps>
+) => {
   return (
     <Form>
       <Form.Item
@@ -19,12 +27,11 @@ const EventForm: FC = () => {
       </Form.Item>
       <Form.Item>
         <Select>
-          <Select.Option value="jack">Jack</Select.Option>
-          <Select.Option value="lucy">Lucy</Select.Option>
-          <Select.Option value="disabled" disabled>
-            Disabled
-          </Select.Option>
-          <Select.Option value="Yiminghe">yiminghe</Select.Option>
+          {props.guests.map((guest) => (
+            <Select.Option key={guest.username} value={guest.username}>
+              {guest.username}
+            </Select.Option>
+          ))}
         </Select>
       </Form.Item>
 
