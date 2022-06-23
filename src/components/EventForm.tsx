@@ -6,12 +6,15 @@ import { Moment } from "moment";
 import { rules } from "../utils/rules";
 // Utils
 import { formDate } from "../utils/date";
+// Hooks
+import { useTypedSelector } from "../hooks/useTypedSelector";
 // Models
 import { IUser } from "../models/IUser";
 import { IEvent } from "../models/IEvent";
 
 interface EventFormProps {
   guests: IUser[];
+  submit: (event: IEvent) => void;
 }
 
 const EventForm: FC<EventFormProps> = (
@@ -23,15 +26,20 @@ const EventForm: FC<EventFormProps> = (
     discription: "",
     guest: "",
   });
+  const { user } = useTypedSelector((state) => state.auth);
 
   const selectDate = (date: Moment | null) => {
     if (date) {
-      console.log(formDate(date?.toDate()));
+      setEvent({ ...event, date: formDate(date.toDate()) });
     }
   };
 
+  const submitForm = () => {
+    props.submit({ ...event, author: user.username });
+  };
+
   return (
-    <Form>
+    <Form onFinish={submitForm}>
       <Form.Item
         label="Описание события"
         name="description"
@@ -45,7 +53,7 @@ const EventForm: FC<EventFormProps> = (
       <Form.Item label="Дата события" name="date" rules={[rules.required()]}>
         <DatePicker onChange={(date) => selectDate(date)} />
       </Form.Item>
-      <Form.Item>
+      <Form.Item rules={[rules.required()]}>
         <Select onChange={(guest: string) => setEvent({ ...event, guest })}>
           {props.guests.map((guest) => (
             <Select.Option key={guest.username} value={guest.username}>
